@@ -1,0 +1,9 @@
+apiVersion: v1
+description: A Helm chart for deploying Rolodex into the kubernetes cluster
+name: rolodex
+version: 3.0.70
+sources:
+- https://github.emcrubicon.com/coreservices/Rolodex.git
+maintainers:
+- name: Harish Sathyanarayan
+  email: harish.Sathyanarayan@virtustream.com

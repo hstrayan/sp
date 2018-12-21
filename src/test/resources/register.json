@@ -1,0 +1,6 @@
+{  
+   "serverName": "ldapConnector1",
+   "parentDn" : "vsc1",
+   "targetDns":["cn=testadd,ou=system"],
+    "mappedAttrs": "cn=commonName,uid=oid,x=y"
+}

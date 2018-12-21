@@ -1,0 +1,43 @@
+version: '2'
+services:
+  rolodex:
+    image: docker-registry.core.rcsops.com/coreservices/rolodex:next
+    ports:
+      - "10389:10389"
+      - "9999:9999"  
+    expose:
+      - 10389
+      - 9999
+   # volumes:
+   #   - /var/rolodex-data:/rolodex-data
+    environment:
+      DEBUG: 'true'
+      CONNECTORHOST: 'localhost'
+      DEFAULT_HOST: ldap
+      DEFAULT_PORT: 389
+      DEFAULT_USERNAME: 'cn=admin,dc=deadbolt,dc=emc'
+      DEFAULT_PASSWORD: 'Password1'
+      DEFAULT_SOURCETENANTDN: 'ou=tenants,dc=deadbolt,dc=emc'
+      DEFAULT_LDAPTYPE: 'openLdap'
+      PARTITIONLOC: 'file:///rolodex-data'
+      TRANSPARENTPROXY: 'true'
+      USETLS: 'false'
+     
+    depends_on:
+      - ldap
+    links:
+      - ldap
+      
+  ldap:
+    image: docker-registry.core.rcsops.com/coreservices-snapshots/deadbolt/openldap
+    environment: 
+      LDAP_DOMAIN: deadbolt.emc
+      LDAP_ADMIN_PASSWORD: Password1
+    ports:
+      - "389:389"
+    expose:
+      - 389
+    #volumes:
+      #- c:/docker/openldap/ldap:/var/lib/ldap
+     # - c:/docker/openldap/slap.d:/etc/ldap/slapd.d
+ 

@@ -1,0 +1,11 @@
+Features:
+
+1. All CRUD operations using User Tenant APIs
+2. Authentication and Password Management via REST APIs
+3. User Tenant CRUDs using Interceptors
+4. Refactor interceptor flow to handle both REST calls and LDAP requests.
+5. Bootstrap sample tenants on startup
+6. Update schema with additional rolodex attributes to support all CRUD operations
+7. Fix for ApacheDS bug when the server does not start correctly on the second bootup.
+8. Thinner log files on startup
+9. Crud Test Util class for entry

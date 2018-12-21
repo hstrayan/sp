@@ -1,0 +1,6 @@
+{
+   "dn": "cn=testadd,ou=system",
+   "objectClass":["top","person"],
+   "attributes":["cn: testadd_cn",
+                 "sn: testadd_sn"]
+}

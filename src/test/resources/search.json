@@ -1,0 +1,6 @@
+{
+   "dn": "cn=testadd,ou=system",
+   "scope": "sub",
+   "filter": "(cn=testadd)",
+   "attributes" : ["cn"]
+  }

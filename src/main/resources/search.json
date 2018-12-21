@@ -1,0 +1,6 @@
+#search example
+
+{
+   "dn": "cn=testadd,ou=system",
+    "attributes" : ["sn"]
+  }

@@ -1,0 +1,22 @@
+#modify example
+
+# Add Attribute
+{
+   "modifyType": 0,
+   "dn": "cn=testadd,ou=system",
+   "attributes":["sn: testadd_modified"]
+}
+
+# Remove Attribute
+{
+   "modifyType": 1,
+   "dn": "cn=testadd,ou=system",
+   "attributes":["sn: testadd_modified"]
+}
+
+# Replace Attribute
+{
+   "modifyType": 2,
+   "dn": "cn=testadd,ou=system",
+   "attributes":["sn: testadd_modified"]
+}

@@ -1,0 +1,129 @@
+#
+# config.yml
+#
+# Example values for main configuration file for Rolodex server.
+# Please copy this example to "config.yml" and edit before starting
+# the service.
+
+#hostName: default is "localhost"
+useVault: true
+vaultToken: devroot
+vaultUrl: http://vault:8200
+localContextPath: secret/local
+remoteContextPath: secret/local
+hostName: localhost 
+serverAddress: 127.0.0.1
+port: 10389
+sslPort: 
+certName: server.ks
+certPwd: secret
+serviceName: "embeddedLDAP"
+localUserName: "uid=admin,ou=system"
+localPasswd: "secret"
+nbThreads: 3
+backlog: 5
+#changeLog: true or false
+changeLog: false
+#partition: usage - [partitionId:partition1, partitionId:partition2...]
+useCustomPartition: true
+partitionName: "o=emc"
+partitionLoc: "file:///rolodex-data"
+parentNode: o=emc
+schemaFileName : rolodex.ldif
+#SchemaFileName: prod-rolodex.ldif
+interceptor: "com.virtustream.coreservices.rolodex.interceptors.ProxyInterceptor"
+connector: "com.virtustream.coreservices.rolodex.connectors.DefaultProxyConnector"
+transparentProxy: true
+tenancyDn: ou=tenants
+mappingDn: ou=mapping
+schemaFilter: (ou=*)
+rolodexAttrs: ["tenantId","placeholderAttrs"]
+sourceAttributes: 
+            ldapConnector1: 
+                ["objectClass: top","objectClass: inetOrgPerson","objectClass: person","objectClass: organizationalPerson","cn","sn","ou"]
+defaultConnectorConfiguration:
+     ldapConnector1:
+         hostname: ldapserver
+         port: 10389
+         username: uid=admin,ou=system
+         pwd: secret
+         useTLS: false
+         keyStorePath: trusted.ks
+         keyStorePassword: secret
+         supportedProtocols: TLSv1.2
+#     ldapConnector2:
+#        hostname: localhost
+#        port: 13389
+#        username: uid=admin,ou=system
+#        pwd: secret
+#        useTLS : false
+#     ldapConnector3:
+#        hostname: localhost
+#        port: 14389
+#        username: uid=admin,ou=system
+#        pwd: secret
+           
+
+#failOverConnectorConfiguration:
+ #      failOverServer:
+ #         primary: ldapConnector1
+ #         hostname: localhost
+ #         port: 14389
+ #         username: uid=admin,ou=system
+ #         pwd: secret
+                
+        
+defaultConnectorOperations:
+     search:
+         baseDN: o=emc2
+         filter: (objectclass=*)
+         attributes: all
+
+#tenantMappingReqs:
+#     ldapConnector1:
+#             dnMapping:
+#             # DN tree to attach to : parent DN
+#               cn=foo,ou=system: o=virtustream
+#               cn=bar,ou=system: o=virtustream
+#             objectClasses:
+#               top: top
+#               inetOrgperson: inetOrgPerson
+#             attributes:
+#               searchFilter: (cn=abc1)
+#               uid: cn
+#               cn: sn
+#      ldapConnector2:
+#           dnMapping:
+#             # DN tree to attach to : parent DN
+#               cn=abc1,ou=system: o=virtustream
+#               cn=abc2,ou=system: o=virtustream
+#           attributes:
+#              searchFilter: (cn=abc1)
+#              uid: cn
+#              cn: sn
+
+  
+#server:
+#  type: simple
+#  applicationContextPath: /
+#  connector:
+#    type: http
+#    port: 8082
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 9179
+      outputBufferSize: 32KiB
+      idleTimeout: 30 seconds
+      minBufferPoolSize: 64 bytes
+      bufferPoolIncrement: 1KiB
+      maxBufferPoolSize: 64KiB
+      acceptorThreads: 1
+      selectorThreads: 2
+      acceptQueueSize: 1024
+      reuseAddress: true
+      soLingerTime: 600s
+  adminConnectors:
+    - type: http
+      port: 9180

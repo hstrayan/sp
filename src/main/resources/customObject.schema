@@ -1,0 +1,21 @@
+attributetype ( 1.3.6.1.4.1.18060.0.4.3.2.1 
+        NAME 'serverName' 
+        DESC 'server name/IP'
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 
+        SINGLE-VALUE 
+ )
+ 
+ attributetype ( 1.3.6.1.4.1.18060.0.4.3.2.1 
+        NAME 'endpoint' 
+        DESC 'endpoint url address'
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.28
+)
+
+objectclass ( 1.3.6.1.4.1.18060.0.4.3.3.1 
+        NAME 'mapper'
+        DESC 'A mapper objectclass' 
+        SUP top 
+        STRUCTURAL 
+        MUST endpoint
+        MAY ( serverName $ description ) 
+ )

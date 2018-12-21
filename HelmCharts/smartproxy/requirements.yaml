@@ -1,0 +1,5 @@
+dependencies:
+- name: openldap
+  version: "1.1.9"
+  repository: "https://artifactory.core.rcsops.com/artifactory/core-helm-local/"
+  condition: ldap.install, global.ldap.install

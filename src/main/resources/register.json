@@ -1,0 +1,5 @@
+{
+   "serverName": "testServer",
+   "targetDns":["cn=foo,ou=bar,
+                 "uid=testadmin,com=dell"]
+}

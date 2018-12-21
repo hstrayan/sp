@@ -1,0 +1,6 @@
+{
+   "modifyType": 0,
+   "dn": "cn=testmodify,ou=system",
+   "attributes":["sn: test_modified"]
+}
+

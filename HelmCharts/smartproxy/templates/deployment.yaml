@@ -1,0 +1,112 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "rolodex.fullname" . }}
+  labels:
+    app: {{ template "rolodex.name" . }}
+    chart: {{ template "rolodex.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ template "rolodex.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "rolodex.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: datadir
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "rolodex.fullname" .) }}
+        - name: certs
+          secret:
+           secretName: {{ template "rolodex.name" . }}-certs
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: DEFAULT_HOST
+            value: {{ if .Values.ldap.install }}{{ template "openldap.fullname" . }}{{ else }}{{ .Values.ldap.host }}{{ end }}
+          - name: DEFAULT_PORT
+            value: {{ .Values.ldap.port | quote }}
+          - name: DEFAULT_USERNAME
+            value: {{ .Values.ldap.username | quote }}
+          - name: DEFAULT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ if .Values.ldap.install }}{{ template "openldap.fullname" . }}{{ else }}{{ template "rolodex.fullname" . }}{{ end }}
+                key: ldap-password
+          - name: CONNECTORS
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "rolodex.fullname" . }}
+                key: connectors
+          - name: DEFAULTADTENANTDN
+            value: {{ .Values.defaultADTenantDn | quote }}
+          - name: ISADREADONLY
+            value: {{ .Values.isAdReadyOnly | quote }}
+          - name: DEFAULTADCONSTR
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "rolodex.fullname" . }}
+                key: defaultADconnStr
+          - name: DEFAULT_SOURCETENANTDN
+            value: {{ .Values.ldap.sourceTenantDN | quote }}
+          - name: DEFAULT_LDAPTYPE
+            value: {{ .Values.ldap.type | quote }}
+          - name: CONNECTORHOST
+            value: {{ .Values.connector.host }}
+          - name: PARTITIONLOC
+            value: file:///rolodex-data
+          - name: TRANSPARENTPROXY
+            value: "true"
+          - name: USETLS
+            value: "false"
+          - name: DEBUG
+            value: "true"
+          ports:
+          - name: http
+            containerPort: 9179
+            protocol: TCP
+          - name: admin
+            containerPort: 9180
+            protocol: TCP
+          - name: ldap
+            containerPort: {{ .Values.connector.port }}
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+            initialDelaySeconds: 500
+          readinessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+            initialDelaySeconds: 30
+          volumeMounts:
+          - name: datadir
+            mountPath: /rolodex-data
+          - name: certs
+            mountPath: "/etc/rolodex-certs"
+            readOnly: true
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

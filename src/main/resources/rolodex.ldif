@@ -1,0 +1,213 @@
+# SCHEMA "ROLODEX"
+dn: cn=rolodex, ou=schema
+objectclass: metaSchema
+objectclass: top
+cn: rolodex
+m-dependencies: core
+m-dependencies: system
+
+dn: ou=attributetypes, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: attributetypes
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.4, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.4
+m-name: tenantId
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.5, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.5
+m-name: tenantName
+m-description: tenantName
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.6, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.6
+m-name: sourceTenantDn
+m-description: sourceTenantDn
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.7, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.7
+m-name: sourceUsersDn
+m-description: sourceUsersDn
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.8, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.8
+m-name: connectionString
+m-description: connectionString
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.9, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.9
+m-name: attrsMap
+m-description: attrsMap
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.10, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.10
+m-name: readOnly
+m-description: readOnly
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.11, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.11
+m-name: endpointDn
+m-description: endpointDn
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.12, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.12
+m-name: hasSource
+m-description: hasSource
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.13, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.13
+m-name: ldapType
+m-description: ldapType
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.14, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.14
+m-name: tempPwd
+m-description: tempPwd
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.15, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.15
+m-name: resourceSetID
+m-description: resourceSetID
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.16, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.16
+m-name: SAMAccountName
+m-description: SAMAccountName
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.17, ou=attributetypes, cn=rolodex, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.17
+m-name: TenantDomain
+m-description: TenantDomain
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.44
+
+dn: ou=comparators, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: comparators
+
+dn: ou=ditcontentrules, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: ditcontentrules
+
+dn: ou=ditstructurerules, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: ditstructurerules
+
+dn: ou=matchingrules, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: matchingrules
+
+dn: ou=matchingruleuse, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: matchingruleuse
+
+dn: ou=nameforms, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: nameforms
+
+dn: ou=normalizers, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: normalizers
+
+dn: ou=objectclasses, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: objectClasses
+
+dn: m-oid=1.3.6.1.4.1.18060.0.4.3.3.3, ou=objectclasses, cn=rolodex, ou=schema
+objectclass: metaObjectClass
+objectclass: metaTop
+objectclass: top
+m-oid: 1.3.6.1.4.1.18060.0.4.3.3.3
+m-name: tenancy
+m-description: tenancy objectclass
+m-supObjectClass: top
+m-typeObjectClass: AUXILIARY
+m-may: tenantId
+m-may: tenantName
+m-may: sourceTenantDn
+m-may: endpointDn
+m-may: sourceUsersDn
+m-may: connectionString
+m-may: attrsMap
+m-may: readOnly
+m-may: hasSource
+m-may: ldapType
+m-may: tempPwd
+m-may: resourceSetID
+m-may: SAMAccountName
+m-may: TenantDomain
+
+dn: ou=syntaxcheckers, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: syntaxcheckers
+
+dn: ou=syntaxes, cn=rolodex, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: syntaxes
+
+
